@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        "keys.h": "c",
+        "spritemanager.h": "c",
+        "main.h": "c",
+        "zgbmain.h": "c",
+        "string.h": "c",
+        "gb.h": "c",
+        "print.h": "c",
+        "music.h": "c",
+        "palette.h": "c",
+        "setautobank.h": "c",
+        "sprite.h": "c"
+    }
+}
