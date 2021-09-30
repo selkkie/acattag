@@ -37,7 +37,7 @@ void OrientBlob(){
         if(data->orientation != 3){SetFrame(THIS,0);
         THIS->mirror=NO_MIRROR;}
         else{
-            SetFrame(THIS,5);
+            SetFrame(THIS,4);
             THIS->mirror=V_MIRROR;
         }
 
@@ -61,7 +61,7 @@ void OrientBlob(){
          if(data->orientation != 3){SetFrame(THIS,2);
            THIS->mirror=H_MIRROR;}
         else{
-            SetFrame(THIS,0);
+            SetFrame(THIS,4);
         THIS->mirror=NO_MIRROR;
         }
         break;

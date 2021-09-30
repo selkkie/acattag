@@ -263,7 +263,7 @@ void DoSynthesis()
 	else if (creationPieces[0] >= 1 && creationPieces[1] >= 1 && creationPieces[2] == 0 && creationPieces[3] >= 1)
 	{
 
-		Creation = SpriteManagerAdd(CreationHead2e, machinepoints[level][0], machinepoints[level][1] + 8);
+		Creation = SpriteManagerAdd(CreationHead3, machinepoints[level][0], machinepoints[level][1] + 8);
 		SetFrame(Creation, 1);
 		//SetBodyData(Creation,1,0);
 		// 		CUSTOM_DATA* cd = (CUSTOM_DATA*)Creation->custom_data;
@@ -418,6 +418,7 @@ void START()
 {
 
 	OBP0_REG = PAL_DEF(2, 0, 1, 3);
+	//OBP1_REG = PAL_DEF(1, 0, 2, 3);
 	BGP_REG = PAL_DEF(3, 2, 1, 0);
 	//scroll_target = SpriteManagerAdd(SpritePlayer, 50, 50);
 
@@ -565,7 +566,7 @@ void Orient_Body()
 
 	if (creationInitFrame != 8)
 	{
-		switch (creation_shift)
+		switch (creation_shift%4)
 		{
 		case 0:
 			SetFrame(Creation, creationInitFrame);
@@ -574,15 +575,15 @@ void Orient_Body()
 			break;
 		case 1:
 			SetFrame(Creation, (creationInitFrame + 1) % 2);
-			Creation->mirror = creation_mirrors[(creationInitMirror + 1) % 4];
+			Creation->mirror = creation_mirrors[(creationInitMirror + 3) % 4];
 			break;
 		case 2:
-			SetFrame(Creation, (creationInitFrame + 2) % 2);
-			Creation->mirror = creation_mirrors[(creationInitMirror + 2) % 4];
+			SetFrame(Creation, (creationInitFrame + 0) % 2);
+			Creation->mirror = creation_mirrors[(creationInitMirror + 3) % 4];
 			break;
 		case 3:
-			SetFrame(Creation, (creationInitFrame + 3) % 2);
-			Creation->mirror = creation_mirrors[(creationInitMirror + 2) % 4];
+			SetFrame(Creation, (creationInitFrame + 1) % 2);
+			Creation->mirror = creation_mirrors[(creationInitMirror + 0) % 4];
 			break;
 		}
 	}

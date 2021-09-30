@@ -29,6 +29,8 @@ BYTE clonestartile = 0;
 void Start_Worm(){
 	SetSpriteAnim(THIS, anim_squirm, 10u);
 		TranslateSprite(THIS,0,4);
+		 clonestartile = 0;
+		 shift=0;
 }
 
 
