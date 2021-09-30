@@ -39,6 +39,7 @@ const char* codons[]= {"'","(",")","-"};
 
 UINT8 sframeskip = 0;
 extern BYTE dosynthesis;
+extern BYTE frommachine;
 extern BYTE scanventory[];
 //worm,crab,blob
 		char snum[5];
@@ -67,7 +68,7 @@ const INT8 sizes[14][2] = {
 INT8 scanselection = -1;
 //UINT8 bordertiles[] = {3,4,5,11,13,18,24,25,26,27};
 
-UINT8 creationPieces[] = {0,0,0,0}; //ARML, UP, ARMR, DOWN
+UINT8 creationPieces[] = {1,3,3,0}; //ARML, UP, ARMR, DOWN
 char* pnames[] = {"","WORM","CRAB","BLOB"};
 
  const UINT8 ac1[] = {6,0,1,2,3,4,5}; //god i dont fxngngk understand c why did i decide to do this, duplicating everything everywhere hurts me so
@@ -162,26 +163,6 @@ UpdatePieces();
 
 }
 
-char* iota(int i, char b[]){
-    char const digit[] = "0123456789";
-    char* p = b;
-    if(i<0){
-        *p++ = '-';
-        i *= -1;
-    }
-    int shifter = i;
-    do{ //Move to where representation ends
-        ++p;
-        shifter = shifter/10;
-    }while(shifter);
-    *p = '\0';
-    do{ //Move back, inserting digits as u go
-        *--p = digit[i%10];
-        i = i/10;
-    }while(i);
-    return b;
-}
-
 
 
 
@@ -220,20 +201,20 @@ void UpdateSelection(){
 
 
 }
-INT8 valueinarray(UINT8 val, UINT8 arr[])
-{
-    int i;
-    for(i = 0; i < sizeof(arr) ; i++)
-    {
-		PRINT_POS(0,15);
-		Printf("x");
-		iota(arr[i],snum);
-		Printf(snum);
-        if(arr[i] == val)
-            return i;
-    }
-    return -1;
-}
+// INT8 valueinarray(UINT8 val, UINT8 arr[])
+// {
+//     int i;
+//     for(i = 0; i < sizeof(arr) ; i++)
+//     {
+// 		PRINT_POS(0,15);
+// 		Printf("x");
+// 		iota(arr[i],snum);
+// 		Printf(snum);
+//         if(arr[i] == val)
+//             return i;
+//     }
+//     return -1;
+// }
 
 
 void CODONS(){
@@ -332,10 +313,12 @@ void UPDATE() {
 			CODONS();
 	}
 
-    	if(KEY_PRESSED(J_START)){
-	PlayFx(CHANNEL_1, 4, 0x7C, 0x87, 0x53, 0x66,0x86);
-	SetState(StateGame);
-	}
+	//start to exit, as convenient as it is, confuses some players, i'm disabling it for now to force people to find the exit button
+    // 	if(KEY_PRESSED(J_START)){ 
+	// PlayFx(CHANNEL_1, 4, 0x7C, 0x87, 0x53, 0x66,0x86);
+	// SetState(StateGame);
+	// }
+
 if(KEY_TICKED(J_B)||KEY_TICKED(J_SELECT)){
 	if(CurrentPosition<3 && scanventory[CurrentPosition]==1){
 		PlayFx(CHANNEL_1, 4, 0x7C, 0x87, 0x53, 0x66,0x86);
@@ -347,7 +330,7 @@ if(KEY_TICKED(J_B)||KEY_TICKED(J_SELECT)){
 	}
 	else if (CurrentPosition>6 && CurrentPosition<12){
 		PlayFx(CHANNEL_1, 4, 0x7C, 0x87, 0x53, 0x66,0x86);
-		if(scanselection>=0){switch(CurrentPosition){
+		switch(CurrentPosition){
 			case 7:
 				if(creationPieces[1]!=scanselection+1)creationPieces[1]=scanselection+1;
 				else creationPieces[1]=0;
@@ -368,11 +351,14 @@ if(KEY_TICKED(J_B)||KEY_TICKED(J_SELECT)){
 			
 		}
 		UpdatePieces();
-		}
+		
 		
 	}
-	else if (CurrentPosition == 12)SetState(StateGame);
+	else if (CurrentPosition == 12){
+		frommachine = 1;
+		SetState(StateGame);}
 	else if (CurrentPosition == 13){
+			frommachine = 1;
 			dosynthesis = 1;
 		SetState(StateGame);
 	
@@ -460,22 +446,3 @@ if(KEY_TICKED(J_B)||KEY_TICKED(J_SELECT)){
 
 }
 
-/*
-TO DO:
-
-1. put scanning logic into synth menu
-
-2. fix worm ai
-
-3. set up system for selector.... points of interest and maybe dynamic resizing
-
-4. synthesize a worm
-
-5. button/door system
-
-
-
-side stuff i dont want to forget:
-* introduce a custom faadein that can cover up the awkward tile hiding stuff... see those yt tutorials
-
-*/

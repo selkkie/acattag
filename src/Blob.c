@@ -8,7 +8,8 @@ BYTE blobtile = 0;
 UINT16 spitting_frameskip = 0;
 
 typedef struct {
-
+UINT8 oritentation; //L U R D
+UINT8 fliptime; //L U R D
     INT8 vx;
     INT8 vy;
 }CUSTOM_DATA;
@@ -17,21 +18,22 @@ void CreateSpit(UINT16 x,UINT16 y,INT8 vx,INT8 vy);
 
 void Start_Blob(){
 SetSpriteAnim(THIS, anim_blob_blink, 6u);
+blobtile=0;
 }
 
 void BlobCloneStartTile(){
 	 blobtile = 1;
-
 	set_bkg_tile_xy(10,2,0x53);
 }
 
 void BlobSpitAni(){
-    SetSpriteAnim(THIS, anim_blob_spit, 25u);
+    SetSpriteAnim(THIS, anim_blob_spit, 10u);
 	   Sprite* spt = SpriteManagerAdd(Spit,THIS->x,THIS->y);
   //  CreateSpit(THIS->x,THIS->y,,);
     CUSTOM_DATA* spitdata = (CUSTOM_DATA*)spt->custom_data;
+    spitdata->fliptime = 0;
     spitdata->vx = 0;
-    spitdata->vy = 40;
+    spitdata->vy = 1;
 }
 void BlobSpit(){
 

@@ -5,10 +5,13 @@
 #include "Scroll.h"
 #include "Print.h"
 #include "Palette.h"
+#include "Music.h"
 #include "Sound.h"
+
 IMPORT_TILES(diawindowandfont);
 IMPORT_MAP(sabinethx);
 IMPORT_MAP(dialogue);
+DECLARE_MUSIC(getscan);
 
 UINT8 delayShow = 106;
 BYTE shown = 0;
@@ -22,6 +25,7 @@ void START() {
        
 }
 void Thank(){
+       PlayMusic(getscan,0);
     shown=1;
 UINT8 x;
 for(x=0;x<delayShow;x++)
@@ -35,6 +39,7 @@ for(x=0;x<delayShow;x++)
    SHOW_WIN;
     	  PRINT_POS(1,1);
 	   Printf("THANKS FOR PLAYING");
+StopMusic;
 
 }
 

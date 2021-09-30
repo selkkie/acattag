@@ -18,12 +18,12 @@ const UINT8 anims[4][3]={
 UINT8 frameskip = 0;
 enum mirror mirrors[]={V_MIRROR,H_MIRROR,HV_MIRROR,HV_MIRROR};
 INT8 shift=0;
-// const INT8 dirx[]={1,0,-1,0};
-// const INT8 diry[]={0,1,0,-1};
+const INT8 dirx[]={1,0,-1,0};
+const INT8 diry[]={0,1,0,-1};
 // 				//R,D,L,U
 
-const INT8 dirx[]={-1,0,1,0};
-const INT8 diry[]={0,-1,0,1};
+// const INT8 dirx[]={-1,0,1,0};
+// const INT8 diry[]={0,-1,0,1};
 BYTE clonestartile = 0;
 
 void Start_Worm(){
