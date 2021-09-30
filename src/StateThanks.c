@@ -13,7 +13,7 @@ IMPORT_MAP(sabinethx);
 IMPORT_MAP(dialogue);
 DECLARE_MUSIC(getscan);
 
-UINT8 delayShow = 106;
+UINT8 delayShow = 0;
 BYTE shown = 0;
 void START() {
 	OBP0_REG = PAL_DEF(2,0,1,3);
@@ -26,34 +26,33 @@ void START() {
 }
 void Thank(){
        PlayMusic(getscan,0);
-    shown=1;
-UINT8 x;
-for(x=0;x<delayShow;x++)
-{wait_vbl_done;}
+ 
+
+
    WX_REG = 7;
 	   WY_REG = 144-25;
 	InitWindow(0,0,BANK(dialogue),&dialogue);
-
 
 	  INIT_FONT(diawindowandfont,PRINT_WIN);
    SHOW_WIN;
     	  PRINT_POS(1,1);
 	   Printf("THANKS FOR PLAYING");
-StopMusic;
+
 
 }
 
 
 
 void UPDATE() {
-  if(shown==0)Thank();
-
-    if(KEY_PRESSED(ANY_KEY_PRESSED)){
-        
-      
-        SetState(StatePressStart);
-          HIDE_WIN;
-    }
+   if(shown==0)
+{   delayShow++;
+  if(delayShow==60)Thank();
+   if(delayShow>=195){StopMusic;shown = 1;}
+   }
+   //  if(KEY_PRESSED(ANY_KEY_PRESSED)){ disabling this because pertinent variables don't get reset on a new playthrough, gotta force the player to reset manually for now
+   //      SetState(StatePressStart);
+   //        HIDE_WIN; //also hiding this is ugly atm b/c it overwrote the background tiles
+   //  }
 	
 
 

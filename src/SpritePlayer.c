@@ -157,7 +157,7 @@ void UPDATE()
 	}
 	if (KEY_PRESSED(J_SELECT))
 	{
-		open[level] = 1;
+		//open[level] = 1; debug cheat code
 	}
 	if (KEY_TICKED(J_START))
 	{
