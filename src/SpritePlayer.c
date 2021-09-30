@@ -39,7 +39,7 @@ DECLARE_MUSIC(getscan);
 DECLARE_MUSIC(aca);
 uint8_t *saved_tilemap;
 
-extern BYTE scanventory[] = {1, 0, 1};
+extern BYTE scanventory[] = {0, 0, 0};
 
 //worm,crab,blob
 enum mirror whyy[] = {V_MIRROR, NO_MIRROR};

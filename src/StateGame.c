@@ -10,7 +10,7 @@
 #include "Print.h"
 #include "Music.h"
 
-IMPORT_TILES(terminalfont);
+IMPORT_TILES(diawindowandfont);
 
 IMPORT_MAP(dialogue);
 IMPORT_MAP(lvl0);
@@ -58,7 +58,7 @@ BYTE frommachine = 0;
 UINT8 gatespots[] = {
 	10, 0, 0, 0, 10};
 
-UINT8 level = 4;
+UINT8 level = 0;
 UINT8 door = 1; //door of last entry for spawn location, 1 is left side
 UINT8 doorpointsx[] = {
 	125,
@@ -426,7 +426,7 @@ void START()
 	// //scroll_h_border = 2 << 3;
 	//InitWindow(0,0,BANK(dialogue),&dialogue);
 	// InitScrollTiles()
-	INIT_FONT(terminalfont, PRINT_WIN);
+	INIT_FONT(diawindowandfont, PRINT_WIN);
 
 	SpriteManagerAdd(SpritePlayerHead, 80, 60);
 	switch (level)
@@ -511,7 +511,7 @@ void START()
 	NR50_REG = 0x77; //Max volume
 	PlayMusic(aca, 1);
 
-	//INIT_CONSOLE(terminalfont,3,2);
+	//INIT_CONSOLE(diawindowandfont,3,2);
 }
 
 void OpenGate()

@@ -68,7 +68,7 @@ const INT8 sizes[14][2] = {
 INT8 scanselection = -1;
 //UINT8 bordertiles[] = {3,4,5,11,13,18,24,25,26,27};
 
-UINT8 creationPieces[] = {1,3,3,0}; //ARML, UP, ARMR, DOWN
+UINT8 creationPieces[] = {0,0,0,0}; //ARML, UP, ARMR, DOWN
 char* pnames[] = {"","WORM","CRAB","BLOB"};
 
  const UINT8 ac1[] = {6,0,1,2,3,4,5}; //god i dont fxngngk understand c why did i decide to do this, duplicating everything everywhere hurts me so
